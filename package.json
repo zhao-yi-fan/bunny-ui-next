@@ -5,8 +5,10 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "test:unit": "vue-cli-service test:unit"
+    "test:unit": "vue-cli-service test:unit",
+    "lib": "vue-cli-service build --target lib --name moonUi ./src/packages/index.js"
   },
+  "main": "./dist/moonUi.umd.min.js",
   "dependencies": {
     "core-js": "^3.6.5",
     "vue": "^2.6.11"
