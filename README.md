@@ -1,24 +1,14 @@
-# moon-ui
+## bunny-ui
 
-## Project setup
-```
-npm install
-```
-
-### Compiles and hot-reloads for development
-```
-npm run serve
+## QuickStart
+```bash
+npm install bunny-ui
 ```
 
-### Compiles and minifies for production
-```
-npm run build
-```
+## usage
 
-### Run your unit tests
+```bash
+import bunnyUi from 'bunny-ui'
+import 'bunny-ui/dist/bunny-ui.css'
+Vue.use(bunnyUi)
 ```
-npm run test:unit
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
