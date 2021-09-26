@@ -7,7 +7,7 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "test:unit": "vue-cli-service test:unit",
-    "lib": "vue-cli-service build --target lib --name bunnyUi ./src/packages/index.js"
+    "lib": "vue-cli-service build --target lib --name bunnyUi ./src/packages/index.js --no-clean && vue-cli-service build --all --no-clean"
   },
   "main": "./dist/bunnyUi.umd.min.js",
   "dependencies": {
