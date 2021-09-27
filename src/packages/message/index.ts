@@ -12,7 +12,7 @@ let getInstance = () => {
   // 获取他的儿子，就一个儿子
   let component = vm.$children[0]
   return {
-    add (options) {
+    add(options) {
       component.add(options)
     }
   }
@@ -24,17 +24,17 @@ const getInst = () => { // 返回唯一的实例
   return instance;
 }
 const MessageMap = {
-  info (options) {
+  info(options) {
     getInst().add(options);
   },
-  warn () { },
-  success () { },
-  error () { },
+  warn() { },
+  success() { },
+  error() { },
 }
 
-let _Vue : any;
+let _Vue: any;
 export default { // 写插件的原理
-  install (app, options) { // options 选项代表的是 use的第二个参数
+  install(app: any, options) { // options 选项代表的是 use的第二个参数
     // console.log(app, options)
     if (!_Vue) { // 防止用户多次use
       _Vue = app;
@@ -42,10 +42,11 @@ export default { // 写插件的原理
       Object.keys(MessageMap).forEach(type => {
         $message[type] = MessageMap[type];
       })
-      app.config.globalProperties.$message = $message;
+      // app.config.globalProperties.$message = $message;
+      app.provide('$message',$message);
     }
     app.mixin({
-      beforeCreated () { // 在所有的组件中都增加了这个方法
+      beforeCreated() { // 在所有的组件中都增加了这个方法
         if (this.$options.info) {
           console.log('根')
         } else {
