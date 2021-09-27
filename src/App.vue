@@ -13,6 +13,12 @@ export default {
   name: 'App',
   components: {
 
+  },
+  mounted () {
+    this.$message.info({
+      message: "我很帅",
+      duration: 3000
+    })
   }
 }
 </script>
