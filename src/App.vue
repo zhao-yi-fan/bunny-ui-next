@@ -1,26 +1,26 @@
 <template>
-  <div id="app">
+  <div>
     <bn-button></bn-button>
     <bn-button-group></bn-button-group>
     <bn-icon></bn-icon>
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import { defineComponent,toRefs, reactive, computed, onMounted } from 'vue';
 
-
-export default {
+export default defineComponent({
   name: 'App',
-  components: {
+  setup(ctx) {
+    console.log(ctx, "ctx====");
+    console.log(arguments, "ctx====");
 
-  },
-  mounted () {
-    this.$message.info({
-      message: "我很帅",
-      duration: 3000
-    })
+    // $message.info({
+    //   message: "我很帅",
+    //   duration: 3000
+    // })
   }
-}
+})
 </script>
 
 <style lang="scss">

@@ -32,19 +32,19 @@ const MessageMap = {
   error () { },
 }
 
-let _Vue;
+let _Vue : any;
 export default { // 写插件的原理
-  install (Vue, options) { // options 选项代表的是 use的第二个参数
-    // console.log(Vue, options)
+  install (app, options) { // options 选项代表的是 use的第二个参数
+    // console.log(app, options)
     if (!_Vue) { // 防止用户多次use
-      _Vue = Vue;
+      _Vue = app;
       let $message = {}
       Object.keys(MessageMap).forEach(type => {
         $message[type] = MessageMap[type];
       })
-      Vue.prototype.$message = $message;
+      app.config.globalProperties.$message = $message;
     }
-    Vue.mixin({
+    app.mixin({
       beforeCreated () { // 在所有的组件中都增加了这个方法
         if (this.$options.info) {
           console.log('根')
