@@ -1,10 +1,10 @@
 import Message from './message.vue'
 // 获取当前组件的实例
 let getInstance = () => {
-  let vm = new _Vue({
+  let vm = _Vue({
     // MessageComponent这个vue文件会被加载成一个对象
     render: h => h(Message)
-  }).$mount(); // 会在内存中进行挂载
+  }).mount(); // 会在内存中进行挂载
   // .$mount('#app') 写了就会挂载到页面，没写就会放到$el中
   console.log(vm, vm.$el)
   document.body.appendChild(vm.$el)

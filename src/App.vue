@@ -5,7 +5,15 @@
 </template>
 
 <script lang="ts">
-import { defineComponent,getCurrentInstance,inject, toRefs, reactive, computed, onMounted } from "vue";
+import {
+  defineComponent,
+  getCurrentInstance,
+  inject,
+  toRefs,
+  reactive,
+  computed,
+  onMounted,
+} from "vue";
 interface Data {
   [key: string]: unknown;
 }
@@ -18,12 +26,12 @@ interface SetupContext {
 export default defineComponent({
   name: "App",
   setup(props: Data, context: SetupContext) {
-    const message =inject('$message')
+    const message: any = inject("$message");
     // const { proxy } = getCurrentInstance()
     message.info({
       message: "我很帅",
-      duration: 3000
-    })
+      duration: 3000,
+    });
   },
 });
 </script>
