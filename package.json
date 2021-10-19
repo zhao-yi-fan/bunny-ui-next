@@ -12,7 +12,8 @@
   "main": "./dist/bunnyUi.umd.min.js",
   "dependencies": {
     "core-js": "^3.6.5",
-    "vue": "^3.0.0"
+    "vue": "^3.2.20",
+    "vue-router": "^4.0.12"
   },
   "devDependencies": {
     "@types/chai": "^4.2.11",
