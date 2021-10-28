@@ -12,7 +12,12 @@ export default defineComponent({
   name: "BnMessage",
   data() {
     return {
-      messages: [],
+      messages: [
+        {
+          id: "",
+          message: "",
+        },
+      ],
       id: 0,
     };
   },
