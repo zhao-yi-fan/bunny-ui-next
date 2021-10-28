@@ -1,37 +1,41 @@
 <template>
   <div class="messages" v-if="messages.length">
     <div v-for="m in messages" :key="m.id">
-      {{m.message}}
+      {{ m.message }}
     </div>
   </div>
 </template>
 
-<script>
-export default {
+<script lang="ts">
+import { defineComponent, onMounted } from "vue";
+export default defineComponent({
   name: "BnMessage",
-  data () {
+  data() {
     return {
-      messages: []
-    }
+      messages: [],
+      id: 0,
+    };
   },
-  mounted () {
+  mounted() {
     this.id = 0; // 表示当前弹层的唯一标识
   },
   methods: {
-    add (options) {
+    add(options) {
       let id = this.id++;
       let layer = { ...options, id };
       this.messages.push(layer);
       layer.timer = setTimeout(() => {
-        this.remove(layer)
+        this.remove(layer);
       }, options.duration);
     },
-    remove (layer) {
+    remove(layer) {
       clearTimeout(layer.timer);
-      this.messages = this.messages.filter(message => message.id !== layer.id)
-    }
+      this.messages = this.messages.filter(
+        (message) => message.id !== layer.id
+      );
+    },
   },
-}
+});
 </script>
 <style lang="css" scoped>
 </style>
