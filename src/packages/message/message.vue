@@ -7,11 +7,11 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted } from "vue";
+import { defineComponent, onMounted, reactive, toRefs } from "vue";
 export default defineComponent({
   name: "BnMessage",
-  data() {
-    return {
+  setup(props) {
+    const state = reactive({
       messages: [
         {
           id: "",
@@ -19,26 +19,32 @@ export default defineComponent({
         },
       ],
       id: 0,
-    };
-  },
-  mounted() {
-    this.id = 0; // 表示当前弹层的唯一标识
-  },
-  methods: {
-    add(options) {
-      let id = this.id++;
+    });
+
+    onMounted(() => {
+      state.id = 0; // 表示当前弹层的唯一标识
+    });
+
+    const add = function (options) {
+      let id = state.id++;
       let layer = { ...options, id };
-      this.messages.push(layer);
+      state.messages.push(layer);
       layer.timer = setTimeout(() => {
-        this.remove(layer);
+        remove(layer);
       }, options.duration);
-    },
-    remove(layer) {
+    };
+    const remove = function (layer) {
       clearTimeout(layer.timer);
-      this.messages = this.messages.filter(
+      state.messages = state.messages.filter(
         (message) => message.id !== layer.id
       );
-    },
+    };
+
+    return {
+      ...toRefs(state),
+      add,
+      remove,
+    };
   },
 });
 </script>

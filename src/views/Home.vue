@@ -2,6 +2,8 @@
   <bn-button></bn-button>
   <bn-button-group></bn-button-group>
   <bn-icon></bn-icon>
+
+  <button @click="addMessage">消息框</button>
 </template>
 
 <script lang="ts">
@@ -14,25 +16,23 @@ import {
   computed,
   onMounted,
 } from "vue";
-interface Data {
-  [key: string]: unknown;
-}
-interface SetupContext {
-  attrs: Data;
-  // slots: Slots;
-  emit: (event: string, ...args: unknown[]) => void;
-}
+
+import { Message } from "../packages";
+
 export default defineComponent({
-  name: 'Home',
-  components: {
-  },
-  setup(props: Data, context: SetupContext) {
-    const message: any = inject("$message");
-    // const { proxy } = getCurrentInstance()
-    message.info({
-      message: "我很帅",
-      duration: 3000,
-    });
+  name: "Home",
+  components: {},
+  setup(props, context) {
+    const addMessage = function () {
+      Message.info({
+        message: "我很帅",
+        duration: 3000,
+      });
+    };
+
+    return {
+      addMessage,
+    };
   },
 });
 </script>

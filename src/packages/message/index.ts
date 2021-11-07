@@ -1,11 +1,11 @@
-import { createVNode, render } from "vue"
-import Message from "./message.vue"
+import { createApp } from "vue"
+import MessageComponent from "./message.vue"
 
-const instances: any = []
+/* const instances: any = []
 // 获取当前组件的实例
-let getInstance = () => {
+ let getInstance = () => {
   // MessageComponent这个vue文件会被加载成一个对象
-  let vm = createVNode(Message)
+  let vm = createVNode(MessageComponent)
   console.log(vm, "vm=========")
 
   const container = document.createElement("div")
@@ -20,46 +20,28 @@ let getInstance = () => {
   // document.body.appendChild(container.firstElementChild!)
   return {
     add(options) {
-      // Message.add(options)
+      // MessageComponent.add(options)
     },
   }
-}
-// 单例模式
-let instance
-const getInst = () => {
-  // 返回唯一的实例
-  instance = instance || getInstance()
-  return instance
-}
-const MessageMap = {
-  info(options) {
-    getInst().add(options)
-  },
-  warn() {},
-  success() {},
-  error() {},
-}
+} */
 
-export default {
-  // 写插件的原理
-  install(app: any, options) {
-    // options 选项代表的是 use的第二个参数
-    // console.log(app, options)
-    let $message = {}
-    Object.keys(MessageMap).forEach((type) => {
-      $message[type] = MessageMap[type]
-    })
-    // app.config.globalProperties.$message = $message;
-    app.provide("$message", $message)
-    app.mixin({
-      beforeCreated() {
-        // 在所有的组件中都增加了这个方法
-        if (this.$options.info) {
-          console.log("根")
-        } else {
-          console.log("不是根")
-        }
-      },
-    })
-  },
-}
+const wrapper = document.createElement("div")
+document.body.appendChild(wrapper)
+
+const Message:any = (options) => {
+  const messageBox = document.createElement('div');
+  let app = createApp(MessageComponent, options)
+
+  app.mount(messageBox);
+  wrapper.appendChild(messageBox);
+};
+
+["success", "info", "warning", "error"].forEach((type) => {
+  Message[type] = function(options) {
+    options.type = type
+    return Message(options)
+  }
+  
+})
+
+export default Message
