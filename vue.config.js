@@ -8,7 +8,7 @@ const getEntries = (dir) => {
   files.forEach(item => {
     let p = path.join(absPath, item);
     if (fs.statSync(p).isDirectory()) {
-      p = path.join(p, 'index.js');
+      p = path.join(p, 'index.ts');
       entries[item] = p;
     }
   })
