@@ -24,8 +24,8 @@ export default defineComponent({
   components: {},
   setup(props, context) {
     const addMessage = function () {
-      Message.info({
-        message: "我很帅",
+      Message.success({
+        message: "文本文本",
         duration: 3000,
       });
     };
