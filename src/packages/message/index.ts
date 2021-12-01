@@ -1,21 +1,27 @@
 import { createApp } from "vue"
 import MessageComponent from "./message.vue"
 
-const wrapper = document.createElement("div")
-document.body.appendChild(wrapper)
-
-let style = {
-  position: 'fixed',
-  top: '20px',
-  left: '50%',
-  transform: 'translateX(-50%)',
-}
-
-for(let key in style ){
-  wrapper.style[key] = style[key];
-}
+let wrapper;
 
 const Message:any = (options) => {
+
+  // 防止 打包document is undefined
+  if(!wrapper){
+    wrapper = document.createElement("div")
+    document.body.appendChild(wrapper)
+    
+    let style = {
+      position: 'fixed',
+      top: '20px',
+      left: '50%',
+      transform: 'translateX(-50%)',
+    }
+    
+    for(let key in style ){
+      wrapper.style[key] = style[key];
+    }
+  }
+
   const messageBox = document.createElement('div');
   let app = createApp(MessageComponent, options);
   let boxStyle = {
