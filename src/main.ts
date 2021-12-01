@@ -4,7 +4,7 @@ import router from './router'
 
 import bnUi from './packages/index'
 
-let app = createApp(App);
+const app = createApp(App);
 
 app.use(bnUi)
 app.use(router)
