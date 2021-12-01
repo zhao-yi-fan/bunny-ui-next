@@ -31,7 +31,27 @@ $color-active-list: (
   justify-content: center;
   line-height: 40px;
   min-width: 80px;
-  &:active {
+  vertical-align: middle;
+  &:disabled {
+    cursor: not-allowed;
+  }
+
+  @keyframes rotate {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  .loading {
+    animation: rotate 2s linear infinite;
+  }
+  .icon {
+    fill: #fff;
+    vertical-align: middle;
+  }
+  &:active:not(:disabled) {
     @include status($color-active-list);
   }
 }

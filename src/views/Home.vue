@@ -1,13 +1,15 @@
 <template>
-  <bn-button type="primary">主要的</bn-button>
-  <bn-button type="danger">危险的</bn-button>
-  <bn-button type="warning">警告</bn-button>
-  <bn-button type="success">成功</bn-button>
-  <bn-button type="info">信息</bn-button>
+  <bn-button type="primary" @click="addMessage" icon="map"
+    >主要的</bn-button
+  >
+  <bn-button type="danger" @click="addMessage" :loading="true"
+    >危险的</bn-button
+  >
+  <bn-button type="warning" @click="addMessage">警告</bn-button>
+  <bn-button type="success" @click="addMessage">成功</bn-button>
+  <bn-button type="info" @click="addMessage">信息</bn-button>
   <bn-button-group></bn-button-group>
-  <bn-icon></bn-icon>
-
-  <button @click="addMessage">消息框</button>
+  <bn-icon icon="huiyikaihuitaolun"></bn-icon>
 </template>
 
 <script lang="ts">
@@ -18,25 +20,25 @@ import {
   toRefs,
   reactive,
   computed,
-  onMounted,
-} from "vue";
+  onMounted
+} from 'vue';
 
-import { Message } from "../packages";
+import { Message } from '../packages';
 
 export default defineComponent({
-  name: "Home",
+  name: 'Home',
   components: {},
   setup(props, context) {
-    const addMessage = function () {
+    const addMessage = function() {
       Message.success({
-        message: "文本文本",
-        duration: 3000,
+        message: '文本文本',
+        duration: 3000
       });
     };
 
     return {
-      addMessage,
+      addMessage
     };
-  },
+  }
 });
 </script>

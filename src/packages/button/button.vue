@@ -1,5 +1,7 @@
 <template>
-  <button :class="classes">
+  <button :class="classes" :disabled="loading">
+    <bn-icon :icon="icon" v-if="icon && !loading" class="icon"></bn-icon>
+    <bn-icon icon="loading" v-if="loading" class="icon loading"></bn-icon>
     <!-- 默认插槽 -->
     <span v-if="$slots.default">
       <slot></slot>
@@ -23,6 +25,11 @@ export default defineComponent({
         }
         return true;
       }
+    },
+    icon: String,
+    loading: {
+      type: Boolean,
+      default: false
     }
   },
   setup(props: any) {
