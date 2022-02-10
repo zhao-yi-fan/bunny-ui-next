@@ -6,7 +6,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import './font';
+// import './font'; window is not undefined
 
 export default defineComponent({
   name: 'BnIcon',
