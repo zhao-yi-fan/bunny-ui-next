@@ -19,7 +19,7 @@ console.log(getEntries('./src/packages'));
 if (process.env.NODE_ENV === 'production' && !args.includes('--all')) {
   module.exports = {
     publicPath: process.env.NODE_ENV === 'production'
-      ? '/bunny-ui/'
+      ? '/bunny-ui-next/'
       : '/',
   }
 }
