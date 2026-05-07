@@ -1,5 +1,8 @@
-@import './common/_var.scss';
-@import './mixins/mixins.scss';
+.bn-button-group {
+  display: inline-flex;
+  vertical-align: middle;
+}
 
-@include blockquote(button-group) {
+.bn-button-group.is-vertical {
+  flex-direction: column;
 }

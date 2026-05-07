@@ -1,15 +1,36 @@
 {
   "name": "bunny-ui-next",
-  "version": "0.1.7",
+  "version": "0.0.1",
   "author": "zhaoyifan",
+  "homepage": "https://zhao-yi-fan.github.io/bunny-ui-next/",
   "private": false,
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "test:unit": "vue-cli-service test:unit",
-    "lib": "vue-cli-service build --target lib --name bunnyUi ./src/packages/index.ts --no-clean && vue-cli-service build --all --no-clean"
+    "lib": "vue-cli-service build --target lib --name bunnyUi ./src/packages/index.ts --no-clean && vue-cli-service build --all --no-clean",
+    "docs:serve": "vitepress dev docs --host 0.0.0.0 --port 8081",
+    "docs:build": "vitepress build docs",
+    "docs:preview": "vitepress preview docs --host 0.0.0.0 --port 8081"
   },
   "main": "./dist/bunnyUi.umd.min.js",
+  "files": [
+    "dist/bunnyUi.common.js",
+    "dist/bunnyUi.css",
+    "dist/bunnyUi.umd.js",
+    "dist/bunnyUi.umd.min.js",
+    "dist/lib",
+    "dist/css/button",
+    "dist/css/button-group",
+    "dist/css/dialog",
+    "dist/css/divider",
+    "dist/css/icon",
+    "dist/css/input",
+    "dist/css/message",
+    "dist/css/tag",
+    "dist/css/watermark",
+    "README.md"
+  ],
   "dependencies": {
     "core-js": "^3.6.5",
     "eslint-config-standard": "^16.0.3",
@@ -33,6 +54,7 @@
     "prettier": "2.5.0",
     "sass": "^1.26.5",
     "sass-loader": "^8.0.2",
-    "typescript": "~4.1.5"
+    "typescript": "~4.1.5",
+    "vitepress": "1.6.4"
   }
 }

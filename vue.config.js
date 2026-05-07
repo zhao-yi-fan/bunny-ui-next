@@ -1,6 +1,20 @@
 const args = process.argv.slice(2);
 const path = require('path');
 const fs = require('fs');
+const webpack = require('webpack');
+const nodeProtocolPlugin = new webpack.NormalModuleReplacementPlugin(/^node:/, resource => {
+  resource.request = resource.request.replace(/^node:/, '')
+});
+const baseConfig = {
+  configureWebpack: {
+    resolve: {
+      alias: {
+        stream: require.resolve('stream-browserify')
+      }
+    },
+    plugins: [nodeProtocolPlugin]
+  }
+};
 const getEntries = (dir) => {
   let absPath = path.resolve(dir); // 绝对路径
   let files = fs.readdirSync(absPath); // 只能读取儿子这一层
@@ -14,10 +28,10 @@ const getEntries = (dir) => {
   })
   return entries;
 }
-console.log(getEntries('./src/packages'));
 
 if (process.env.NODE_ENV === 'production' && !args.includes('--all')) {
   module.exports = {
+    ...baseConfig,
     publicPath: process.env.NODE_ENV === 'production'
       ? '/bunny-ui-next/'
       : '/',
@@ -28,6 +42,12 @@ if (process.env.NODE_ENV === 'production' && args.includes('--all')) {
   module.exports = {
     outputDir: 'dist', // 输出的目录是 dist目录
     configureWebpack: {
+      resolve: {
+        alias: {
+          stream: require.resolve('stream-browserify')
+        }
+      },
+      plugins: [nodeProtocolPlugin],
       entry: {
         ...getEntries('./src/packages')
       },
@@ -70,4 +90,8 @@ if (process.env.NODE_ENV === 'production' && args.includes('--all')) {
     }
   }
 
+}
+
+if (process.env.NODE_ENV !== 'production') {
+  module.exports = baseConfig;
 }
