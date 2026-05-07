@@ -5,8 +5,13 @@ import BnButton from '@/packages/button/button.vue'
 describe('BnButton.vue', () => {
   it('renders default slot', () => {
     const wrapper = shallowMount(BnButton, {
+      global: {
+        stubs: {
+          'bn-icon': true
+        }
+      },
       slots: {
-        default: '保存'
+        default: () => '保存'
       }
     })
 
@@ -15,6 +20,11 @@ describe('BnButton.vue', () => {
 
   it('does not emit click when disabled', async () => {
     const wrapper = shallowMount(BnButton, {
+      global: {
+        stubs: {
+          'bn-icon': true
+        }
+      },
       props: {
         disabled: true
       }
